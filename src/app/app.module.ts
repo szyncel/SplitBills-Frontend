@@ -4,16 +4,18 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     MatToolbarModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
