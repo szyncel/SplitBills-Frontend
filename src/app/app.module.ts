@@ -1,23 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { MatToolbarModule } from '@angular/material';
-import { AppRoutingModule } from './/app-routing.module';
+import {
+  MatDialogModule, MatIconModule,
+  MatListModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatToolbarModule
+} from '@angular/material';
 import { SharedModule } from './shared/shared.module';
-import { TestComponent } from './test/test.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppStoreModule } from './store/app-store.module';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TestComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatSnackBarModule,
     AppRoutingModule,
     SharedModule,
+    MatSidenavModule,
+    MatListModule,
+    BrowserAnimationsModule,
+    AppStoreModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule {

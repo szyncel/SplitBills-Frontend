@@ -1,7 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-navbar></app-navbar>
 
-<!--sidenav-->
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <!--<h2 style="padding-left: 11px; margin-bottom: 0;">Administrator</h2>-->
+    <mat-list role="list" >
+      <mat-list-item routerLink="/dashboard" routerLinkActive="isActive" role="listitem">Dashboard</mat-list-item>
+      <!--<mat-list-item routerLink="" routerLinkActive="isActive" role="listitem">Aktywność</mat-list-item>-->
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="overflow: initial">
+    <!--sidenav-->
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
 
 

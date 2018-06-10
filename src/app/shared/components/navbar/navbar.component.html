@@ -2,12 +2,17 @@
   <mat-toolbar color="primary" style="height: 54px;" class="w-100">
     <div class="w-100">
       <div class="row align-items-center">
-        <div class="col-auto">Split Bills</div>
+        <div class="col-auto">
+          <div routerLink="/" title="Split Bills"
+               class="logo">Split Bills
+            <!--<sup>Shop</sup>-->
+          </div>
+        </div>
         <div class="col"></div>
         <div class="col-auto">
           <button mat-raised-button>Zaloguj</button>
           lub
-          <button mat-raised-button>Zarejestruj</button>
+          <button mat-raised-button (click)="openRegisterDialog()">Zarejestruj</button>
         </div>
       </div>
     </div>

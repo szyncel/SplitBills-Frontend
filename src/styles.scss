@@ -156,3 +156,24 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
+
+.container{
+  max-width: 1240px;
+}
+
+
+.mat-sidenav-container {
+  min-height: 90vh;
+}
+
+.mat-drawer{
+  width: 250px;
+}
+
+//.container{
+//  min-width: 100vh;
+//}
+
+.mat-sidenav-content{
+  overflow: initial;
+}
