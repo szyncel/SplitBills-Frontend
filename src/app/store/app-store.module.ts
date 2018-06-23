@@ -7,6 +7,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/auth.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { FriendsEffects } from './friends/friends.effects';
+import { AuthService } from './auth/auth.service';
+import { FriendsService } from './friends/friends.service';
 
 @NgModule({
   imports: [
@@ -14,14 +17,19 @@ import { BrowserModule } from '@angular/platform-browser';
     HttpClientModule,
     CommonModule,
     StoreModule.forRoot(reducerToken),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([
+      AuthEffects,
+      FriendsEffects
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     })
   ],
   declarations: [],
   providers: [
-    reducerProvider
+    reducerProvider,
+    AuthService,
+    FriendsService
   ]
 })
 export class AppStoreModule {

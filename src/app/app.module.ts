@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {
-  MatDialogModule, MatIconModule,
+  MatDialogModule, MatDividerModule, MatIconModule,
   MatListModule,
   MatSidenavModule,
   MatSnackBarModule,
@@ -12,7 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppStoreModule } from './store/app-store.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './shared/interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SharedModule,
     MatSidenavModule,
     MatListModule,
+    MatDividerModule,
     BrowserAnimationsModule,
     AppStoreModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

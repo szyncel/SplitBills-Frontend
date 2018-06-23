@@ -2,7 +2,7 @@
   <pre>{{form.value | json}}</pre>
   <div mat-dialog-title>
     <div class="row align-items-center">
-      <div class="col">Rejestracja</div>
+      <div class="col">Logowanie</div>
       <div class="col-auto">
         <button type="button" mat-icon-button mat-dialog-close>
           <mat-icon>close</mat-icon>
@@ -23,27 +23,7 @@
 
     <div class="row">
       <mat-form-field class="col-12">
-        <input matInput placeholder="Email" formControlName="Email"
-               required>
-        <mat-error *ngIf="form.get('Email').hasError('required')">
-          Pole jest <strong>wymagane</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field class="col-12">
-        <input matInput placeholder="Hasło" formControlName="Password"
-               required>
-        <mat-error *ngIf="form.get('Password').hasError('required')">
-          Pole jest <strong>wymagane</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field class="col-12">
-        <input matInput placeholder="Powtórz hasło" formControlName="ConfirmPassword"
+        <input type="password" matInput placeholder="Hasło" formControlName="Password"
                required>
         <mat-error *ngIf="form.get('Password').hasError('required')">
           Pole jest <strong>wymagane</strong>

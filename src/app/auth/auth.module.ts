@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
 import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
-import { MatDialogModule, MatIconModule } from '@angular/material';
+import { MatDialogModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -10,9 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MatDialogModule,
     FormsModule, ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule
   ],
-  declarations: [LoginComponent, RegisterDialogComponent],
+  declarations: [ RegisterDialogComponent],
   entryComponents: [RegisterDialogComponent]
 })
 export class AuthModule {

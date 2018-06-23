@@ -4,6 +4,8 @@ import { Auth } from './models/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { SuccessAddResponse } from '../common/models/success-add-response';
 import 'rxjs/add/operator/map';
+import { User } from './models/user';
+import { LoginSuccessResponse } from './models/login-success-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +16,14 @@ export class AuthService {
   }
 
   /** */
-  signup(model: Auth): Observable<SuccessAddResponse> {
-    console.log('service:', model);
-    const url = 'http://192.168.0.81:59987/api/Account/Register';
+  signup(model: User): Observable<SuccessAddResponse> {
+    const url = 'http://localhost:50000/api/Account/Register';
     return this.http.post<SuccessAddResponse>(url, model);
+  }
+
+  /** */
+  signin(model: Auth): Observable<LoginSuccessResponse> {
+    const url = 'http://localhost:50000/api/Account/Login';
+    return this.http.post<LoginSuccessResponse>(url, model);
   }
 }

@@ -1,0 +1,5 @@
+<mat-list-item *ngFor="let friend of (friendList$ | async)"
+               [class.isActive]="checkSelected(friend) | async"
+               (click)="onShowDetails(friend)">
+  {{ friend?.SurName }}
+</mat-list-item>

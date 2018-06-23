@@ -37,4 +37,8 @@ export function authReducer(state: AuthState = authInitialState, action: Action)
   };
 }
 
+export const getLoginState = (state: AuthState) => state.login;
+
+export const getRegisterState = (state: AuthState) => state.register;
+
 

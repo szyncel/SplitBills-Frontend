@@ -9,10 +9,13 @@
           </div>
         </div>
         <div class="col"></div>
-        <div class="col-auto">
-          <button mat-raised-button>Zaloguj</button>
+        <div class="col-auto" *ngIf="tokenService.isLoggedIn()">
+          <button mat-raised-button (click)="openLoginDialog()">Zaloguj</button>
           lub
           <button mat-raised-button (click)="openRegisterDialog()">Zarejestruj</button>
+        </div>
+        <div class="col-auto" *ngIf="!tokenService.isLoggedIn()">
+          <button mat-raised-button (click)="logout()">Wyloguj</button>
         </div>
       </div>
     </div>

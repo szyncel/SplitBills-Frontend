@@ -2,6 +2,7 @@ import { PayloadAction } from '../../common/models/payload-action';
 import { SendPayload } from '../../common/models/payload/send-payload';
 import { User } from '../models/user';
 import { Auth } from '../models/auth';
+import { LoginSuccessResponse } from '../models/login-success-response';
 
 export const AuthActionTypes = {
   REGISTER: '[Auth] Register',
@@ -12,6 +13,7 @@ export const AuthActionTypes = {
   LOGIN: '[Auth] Login',
   LOGIN_FAIL: '[Auth] Login Fail',
   LOGIN_SUCCESS: '[Auth] Login Success',
+  LOGIN_CLEAR: '[Auth] Login Clear',
   LOGOUT: '[Auth] Logout',
 };
 
@@ -30,7 +32,7 @@ export class RegisterUserSuccessAction implements PayloadAction {
 }
 
 export class RegisterUserFailAction implements PayloadAction {
-  readonly type = AuthActionTypes.REGISTER_SUCCESS;
+  readonly type = AuthActionTypes.REGISTER_FAIL;
 
   constructor(public payload: any) {
   }
@@ -44,31 +46,29 @@ export class RegisterUserClearAction implements PayloadAction {
 }
 
 export class LoginUserAction implements PayloadAction {
-  readonly type = AuthActionTypes.REGISTER;
+  readonly type = AuthActionTypes.LOGIN;
 
   constructor(public payload: SendPayload<Auth>) {
   }
 }
 
 export class LoginUserSuccessAction implements PayloadAction {
-  readonly type = AuthActionTypes.REGISTER_SUCCESS;
+  readonly type = AuthActionTypes.LOGIN_SUCCESS;
 
-  constructor(public payload: any) {
+  constructor(public payload: LoginSuccessResponse) {
   }
 }
 
 export class LoginUserFailAction implements PayloadAction {
-  readonly type = AuthActionTypes.REGISTER_SUCCESS;
+  readonly type = AuthActionTypes.LOGIN_FAIL;
 
   constructor(public payload: any) {
   }
 }
 
 export class LogoutUserAction implements PayloadAction {
-  readonly type = AuthActionTypes.REGISTER_CLEAR;
-
-  constructor(public payload: any) {
-  }
+  readonly type = AuthActionTypes.LOGOUT;
+  readonly payload = null;
 }
 
 export type Action = RegisterUserAction

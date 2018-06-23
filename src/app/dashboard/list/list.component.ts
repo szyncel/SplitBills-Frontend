@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AppState } from '../../store';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { Friend } from '../../store/friends/models/friend';
+import { LoadAllFriendsAction } from '../../store/friends/actions/friends.actions';
 
 @Component({
   selector: 'app-list',
@@ -7,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  friends: Observable<Friend[]>;
+
+  constructor(private store: Store<AppState>) {
+  }
 
   ngOnInit() {
   }
