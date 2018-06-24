@@ -14,4 +14,11 @@ export class TokenService {
     const helper = new JwtHelperService();
     return helper.isTokenExpired(AuthUtil.accessToken);
   }
+
+  get currentUser() {
+    const token = sessionStorage.getItem('access_token');
+    if (!token) return null;
+    const jwtHelper = new JwtHelperService();
+    return jwtHelper.decodeToken(token);
+  }
 }

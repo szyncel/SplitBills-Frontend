@@ -1,5 +1,5 @@
 <div class="toolbar-container">
-  <mat-toolbar color="primary" style="height: 54px;" class="w-100">
+  <mat-toolbar color="primary" style="height: 50px;" class="w-100">
     <div class="w-100">
       <div class="row align-items-center">
         <div class="col-auto">
@@ -15,7 +15,16 @@
           <button mat-raised-button (click)="openRegisterDialog()">Zarejestruj</button>
         </div>
         <div class="col-auto" *ngIf="!tokenService.isLoggedIn()">
-          <button mat-raised-button (click)="logout()">Wyloguj</button>
+          <mat-menu #appMenu="matMenu">
+            <button mat-menu-item (click)="logout()">Wyloguj</button>
+          </mat-menu>
+
+          <button mat-button [matMenuTriggerFor]="appMenu">
+            {{ userInfo?.sub }}
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+
+          <!--<button mat-raised-button (click)="logout()">Wyloguj</button>-->
         </div>
       </div>
     </div>

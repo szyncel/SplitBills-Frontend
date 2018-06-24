@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllExpensesModule } from './all-expenses/all-expenses.module';
 
 const routes: Routes = [
   {
@@ -13,6 +14,14 @@ const routes: Routes = [
   {
     path: 'friends',
     loadChildren: './friends/friends.module#FriendsModule',
+  },
+  {
+    path: 'activity',
+    loadChildren: './activity/activity.module#ActivityModule',
+  },
+  {
+    path: 'all',
+    loadChildren: './all-expenses/all-expenses.module#AllExpensesModule',
   },
 ];
 

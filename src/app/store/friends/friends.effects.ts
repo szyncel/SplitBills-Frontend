@@ -18,9 +18,10 @@ import {
   Action,
   FriendsActionTypes,
   LoadAllFriendsFailAction,
-  LoadAllFriendsSuccessAction
+  LoadAllFriendsSuccessAction, LoadCommonExpensesAction, LoadCommonExpensesFailAction, LoadCommonExpensesSuccessAction
 } from './actions/friends.actions';
 import { FriendsService } from './friends.service';
+import { CommonExpenseResponse } from './models/common-expense-response';
 
 @Injectable()
 export class FriendsEffects {
@@ -42,6 +43,16 @@ export class FriendsEffects {
   //   .do(() => {
   //     this.snackBar.open('Rejestracja przebiegła pomyślnie', 'Ok', { duration: 3500 });
   //   });
+
+  @Effect() loadCommonExpenses$ = this.actions$
+    .ofType(FriendsActionTypes.LOAD_COMMON_EXPENSES)
+    .map((action: LoadCommonExpensesAction) => action.payload.id)
+    .switchMap((id) => this.service
+      .loadCommonExpenses(+id)
+      .map((res: CommonExpenseResponse) => new LoadCommonExpensesSuccessAction(res)
+      )
+      .catch((error: HttpErrorResponse) => of(new LoadCommonExpensesFailAction(error)))
+    );
 
   constructor(private store: Store<AppState>,
               private actions$: Actions,

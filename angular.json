@@ -28,7 +28,8 @@
             ],
             "styles": [
               "src/theming/_bootstrap-custom.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/theming/customTheme.scss"
             ],
             "scripts": []
           },
@@ -78,6 +79,7 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/theming/_bootstrap-custom.scss",
+              "src/theming/customTheme.scss",
               "src/styles.scss"
             ],
             "scripts": [],

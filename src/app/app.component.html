@@ -2,14 +2,36 @@
 <app-navbar></app-navbar>
 
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened="true" *ngIf="!tokenService.isLoggedIn()">
+  <mat-sidenav style="border-right: 1px solid #dedede;" mode="side" opened="true" *ngIf="!tokenService.isLoggedIn()">
     <!--<h2 style="padding-left: 11px; margin-bottom: 0;">Administrator</h2>-->
-    <mat-list role="list" >
-      <mat-list-item routerLink="/dashboard" routerLinkActive="isActive" role="listitem">Dashboard</mat-list-item>
-      <mat-list-item  role="listitem">Aktywność</mat-list-item>
-      <mat-list-item  role="listitem">Wszystkie wydatki</mat-list-item>
+    <mat-list role="list">
+      <mat-list-item routerLink="/dashboard" routerLinkActive="isActive" role="listitem" class="text-muted">
+        <button mat-button class=" w-100 btn-item">
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </button>
+
+      </mat-list-item>
+      <mat-list-item routerLink="/activity" role="listitem" class="text-muted">
+        <button mat-button class=" w-100 btn-item">
+          <mat-icon>flag</mat-icon>
+          Aktywność
+        </button>
+
+      </mat-list-item>
+      <mat-list-item routerLink="/all" role="listitem" class="text-muted">
+        <button mat-button class=" w-100 btn-item">
+          <mat-icon>list</mat-icon>
+          Wszystkie wydatki
+        </button>
+
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <h3 mat-subheader>Znajomi</h3>
+      <h3 mat-subheader>
+        <!--<mat-icon>supervisor_account</mat-icon>-->
+        Znajomi
+
+      </h3>
 
       <app-friend-list></app-friend-list>
       <!--<mat-list-item *ngFor="let note of notes">-->
@@ -17,12 +39,16 @@
 
     </mat-list>
   </mat-sidenav>
+
+  <mat-sidenav style="border-left: 1px solid #dedede;" opened mode="side" position="end" *ngIf="!tokenService.isLoggedIn()">
+    <app-right-sidenav></app-right-sidenav>
+  </mat-sidenav>
+
   <mat-sidenav-content style="overflow: initial">
     <!--sidenav-->
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-
+    <!--<div class="container">-->
+    <router-outlet></router-outlet>
+    <!--</div>-->
 
 
   </mat-sidenav-content>

@@ -1,3 +1,37 @@
-<p>
-  details works!
-</p>
+<mat-toolbar class="background-transparent mb-3">
+  <div class="w-100">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <mat-icon style="font-size: 40px;">account_circle</mat-icon>
+      </div>
+      <div class="col-auto">
+        {{ (selectedFriendData$ | async)?.Name }} {{ (selectedFriendData$ | async)?.Name }}
+      </div>
+      <div class="col"></div>
+      <div class="col-auto">
+        <button mat-raised-button color="primary" type="button">
+          Dodaj rachunek
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<ng-container *ngIf="loading$ | async">
+  <mat-spinner></mat-spinner>
+</ng-container>
+<div class="mx-3">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let item of (commonExpenses$ | async)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ item?.Description }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ item?.Date }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>TotalAmount: {{ item?.TotalAmount }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+

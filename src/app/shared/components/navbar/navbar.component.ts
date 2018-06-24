@@ -6,6 +6,7 @@ import { AppState } from '../../../store';
 import { Store } from '@ngrx/store';
 import { LogoutUserAction } from '../../../store/auth/actions/auth.actions';
 import { TokenService } from '../../../store/auth/token.service';
+import { AuthUtil } from '../../utils/auth-util';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,8 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn;
 
+  userInfo;
+
   constructor(private dialog: MatDialog,
               private store: Store<AppState>,
               public tokenService: TokenService
@@ -23,8 +26,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userInfo = this.tokenService.currentUser;
     this.isLoggedIn = this.tokenService.isLoggedIn();
-    console.log('lalla', this.isLoggedIn);
   }
 
   openRegisterDialog() {

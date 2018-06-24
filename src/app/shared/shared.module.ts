@@ -5,7 +5,7 @@ import {
   MatButtonModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule, MatListModule,
+  MatIconModule, MatInputModule, MatListModule, MatMenuModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -14,9 +14,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterDialogComponent } from '../auth/register-dialog/register-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TestDialogComponent } from './components/navbar/test-dialog/test-dialog.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { FriendListComponent } from './components/friend-list/friend-list.component';
+import { RightSidenavComponent } from './components/right-sidenav/right-sidenav.component';
 
 @NgModule({
   imports: [
@@ -32,19 +32,20 @@ import { FriendListComponent } from './components/friend-list/friend-list.compon
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   declarations: [
     NavbarComponent,
     SidenavComponent,
     RegisterDialogComponent,
-    TestDialogComponent,
     LoginDialogComponent,
-    FriendListComponent
+    FriendListComponent,
+    RightSidenavComponent
   ],
-  exports: [NavbarComponent, FriendListComponent],
+  exports: [NavbarComponent, FriendListComponent, RightSidenavComponent],
   providers: [],
-  entryComponents: [RegisterDialogComponent, TestDialogComponent, LoginDialogComponent]
+  entryComponents: [RegisterDialogComponent, LoginDialogComponent]
 })
 export class SharedModule {
 }

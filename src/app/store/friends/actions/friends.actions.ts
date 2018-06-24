@@ -7,7 +7,12 @@ export const FriendsActionTypes = {
   LOAD_ALL_FRIENDS_SUCCESS: '[Friends] Load all friends Success',
   LOAD_ALL_FRIENDS_CLEAR: '[Friends] Load all friends Clear',
 
-  SELECT_FRIEND: '[Friends] Select friend'
+  SELECT_FRIEND: '[Friends] Select friend',
+
+  LOAD_COMMON_EXPENSES: '[Friends] Load common expenses',
+  LOAD_COMMON_EXPENSES_FAIL: '[Friends] Load common expenses fail',
+  LOAD_COMMON_EXPENSES_SUCCESS: '[Friends] Load common expenses success',
+  CLEAR_COMMON_EXPENSES: '[Friends] Clear common expenses',
 };
 
 export class LoadAllFriendsAction implements PayloadAction {
@@ -41,8 +46,38 @@ export class SelectFriendAction implements PayloadAction {
   }
 }
 
+export class LoadCommonExpensesAction implements PayloadAction {
+  readonly type = FriendsActionTypes.LOAD_COMMON_EXPENSES;
+
+  constructor(public payload: ByIdPayload) {
+  }
+}
+
+export class LoadCommonExpensesSuccessAction implements PayloadAction {
+  readonly type = FriendsActionTypes.LOAD_COMMON_EXPENSES_SUCCESS;
+
+  constructor(public payload: any) {
+  }
+}
+
+export class LoadCommonExpensesFailAction implements PayloadAction {
+  readonly type = FriendsActionTypes.LOAD_COMMON_EXPENSES_FAIL;
+
+  constructor(public payload: HttpErrorResponse) {
+  }
+}
+
+export class LoadCommonExpensesClearAction implements PayloadAction {
+  readonly type = FriendsActionTypes.CLEAR_COMMON_EXPENSES;
+  readonly payload = null;
+}
+
 export type Action = LoadAllFriendsAction
   | LoadAllFriendsSuccessAction
   | LoadAllFriendsFailAction
   | LoadAllFriendsClearAction
-  | SelectFriendAction;
+  | SelectFriendAction
+  | LoadCommonExpensesAction
+  | LoadCommonExpensesSuccessAction
+  | LoadCommonExpensesFailAction
+  | LoadCommonExpensesClearAction;

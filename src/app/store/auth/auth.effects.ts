@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material';
 import {
   Action,
-  AuthActionTypes, LoginUserFailAction,
+  AuthActionTypes, LoginUserAction, LoginUserFailAction,
   LoginUserSuccessAction,
   RegisterUserFailAction,
   RegisterUserSuccessAction
@@ -58,7 +58,7 @@ export class AuthEffects {
 
   @Effect() singinUser$ = this.actions$
     .ofType(AuthActionTypes.LOGIN)
-    .map((action: any) => action.payload)
+    .map((action: LoginUserAction) => action.payload)
     .switchMap((payload: any) => this.service
       .signin(payload.data)
       .map((response: LoginSuccessResponse) => {

@@ -16,29 +16,30 @@ export class FriendListComponent implements OnInit {
 
   friendList$: Observable<Friend[]>;
 
-  selectedFriend$;
+  selectedFriendId$;
+
 
   constructor(private store: Store<AppState>,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.selectedFriend$ = this.store.select(getSelectedFriendState);
-    this.selectedFriend$.subscribe(res => console.log('selected', res));
+    this.selectedFriendId$ = this.store.select(getSelectedFriendState);
+    //this.selectedFriendId$.subscribe(res => console.log('selected', res));
 
     this.friendList$ = this.store.select(getAllFriendsDataState);
-    this.friendList$.subscribe(res => console.log('friends', res));
+   // this.friendList$.subscribe(res => console.log('friends', res));
     this.store.dispatch(new LoadAllFriendsAction());
   }
 
   onShowDetails(friend: Friend): void {
     // this.store.dispatch(new SelectFriendAction({ id: friend.Id }));
     this.router.navigate(['/friends', friend.Id]);
-    console.log(friend);
+    //console.log(friend);
   }
 
   checkSelected(friend: Friend): Observable<boolean> {
-    return this.selectedFriend$
+    return this.selectedFriendId$
       .map((id: number) => id === friend.Id);
   }
 
