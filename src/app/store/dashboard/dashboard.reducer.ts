@@ -12,7 +12,7 @@ const dashboardInitialState = {
   searchDashboardData: { data: null, loading: false, success: false, errors: null },
 };
 
-export function friendsReducer(state: DashboardState = dashboardInitialState, action: Action): DashboardState {
+export function dashboardReducer(state: DashboardState = dashboardInitialState, action: Action): DashboardState {
   return {
     searchDashboardData: operationReducer({
       action, state: state.searchDashboardData, types: {

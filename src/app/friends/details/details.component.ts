@@ -57,6 +57,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch(new LoadCommonExpensesClearAction());
+    this.store.dispatch(new SelectFriendAction({ id: null }));
   }
 
 }

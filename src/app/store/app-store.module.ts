@@ -10,6 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FriendsEffects } from './friends/friends.effects';
 import { AuthService } from './auth/auth.service';
 import { FriendsService } from './friends/friends.service';
+import { DashboardEffects } from './dashboard/dashboard.effects';
+import { DashboardService } from './dashboard/dashboard.service';
 
 @NgModule({
   imports: [
@@ -19,7 +21,8 @@ import { FriendsService } from './friends/friends.service';
     StoreModule.forRoot(reducerToken),
     EffectsModule.forRoot([
       AuthEffects,
-      FriendsEffects
+      FriendsEffects,
+      DashboardEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
@@ -29,7 +32,8 @@ import { FriendsService } from './friends/friends.service';
   providers: [
     reducerProvider,
     AuthService,
-    FriendsService
+    FriendsService,
+    DashboardService
   ]
 })
 export class AppStoreModule {

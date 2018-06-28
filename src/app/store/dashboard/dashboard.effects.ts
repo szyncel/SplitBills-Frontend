@@ -19,6 +19,7 @@ import {
   LoadDashboardDataSuccessAction
 } from './actions/dashboard.actions';
 import { DashboardService } from './dashboard.service';
+import { DashboardData } from './models/dashboard-data';
 
 @Injectable()
 export class DashboardEffects {
@@ -27,7 +28,7 @@ export class DashboardEffects {
     .ofType(DashboardActionTypes.LOAD_DASHBOARD_DATA)
     .switchMap(() => this.service
       .loadDashboardData()
-      .map((res) => new LoadDashboardDataSuccessAction(res)
+      .map((res: DashboardData) => new LoadDashboardDataSuccessAction(res)
       )
       .catch((error: HttpErrorResponse) => {
         return of(new LoadDashboardDataFailAction(error));
