@@ -28,14 +28,12 @@ export class AuthUtil {
     return helper.isTokenExpired(AuthUtil.accessToken);
   }
 
+  static isTokenExist(): string {
+    return sessionStorage.getItem('access_token');
+  }
+
   static getTokenData() {
     const helper = new JwtHelperService();
     return helper.decodeToken(AuthUtil.accessToken);
   }
-
-  // static getTokenData(token: string): TokenData {
-  //   const jwtHelper = new AuthJwtHelper();
-  //   return token ? jwtHelper.decodeToken(token) as TokenData : null;
-  // }
-
 }

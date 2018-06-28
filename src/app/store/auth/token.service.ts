@@ -10,11 +10,13 @@ export class TokenService {
   constructor() {
   }
 
+  /** @deprecated dont use this */
   isLoggedIn(): boolean {
     const helper = new JwtHelperService();
     return helper.isTokenExpired(AuthUtil.accessToken);
   }
 
+  /** @deprecated dont use this */
   get currentUser() {
     const token = sessionStorage.getItem('access_token');
     if (!token) return null;

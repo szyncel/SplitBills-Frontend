@@ -81,16 +81,15 @@ export class AuthEffects {
     .ofType(AuthActionTypes.LOGOUT)
     .map((action: Action) => action.payload)
     .do(() => {
+      sessionStorage.clear();
       this.snackBar.open('Wylogowałeś się', 'Ok', { duration: 3500 });
       this.router.navigate(['/']);
-      sessionStorage.clear();
     });
 
   @Effect({ dispatch: false }) updateToken$ = this.actions$
     .ofType(AuthActionTypes.LOGIN_SUCCESS)
     .map((action: Action) => action.payload)
     .do((payload: any) => {
-      console.log('ser', payload);
       AuthUtil.accessToken = payload.auth_token;
     });
 

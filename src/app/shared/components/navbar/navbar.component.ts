@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { LogoutUserAction } from '../../../store/auth/actions/auth.actions';
 import { TokenService } from '../../../store/auth/token.service';
 import { AuthUtil } from '../../utils/auth-util';
+import { Observable } from 'rxjs/Observable';
+import { getIsLoggedIn, getUserData } from '../../../store/auth/selectors/auth.selectors';
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +21,10 @@ export class NavbarComponent implements OnInit {
 
   userInfo;
 
+  tokenData$: Observable<any>;
+
+  loggedIn$: Observable<any>;
+
   constructor(private dialog: MatDialog,
               private store: Store<AppState>,
               public tokenService: TokenService
@@ -26,6 +32,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loggedIn$ = this.store.select(getIsLoggedIn);
+    this.loggedIn$.subscribe(res => console.log('res', res));
+
+    this.tokenData$ = this.store.select(getUserData);
+    this.tokenData$.subscribe(res => console.log('tokenData', res));
+
     this.userInfo = this.tokenService.currentUser;
     this.isLoggedIn = this.tokenService.isLoggedIn();
   }
