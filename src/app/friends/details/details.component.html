@@ -21,14 +21,28 @@
 </ng-container>
 <div class="mx-3">
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let item of (commonExpenses$ | async)">
-      <mat-expansion-panel-header>
+    <mat-expansion-panel *ngFor="let item of (commonExpenses$ | async)" hideToggle>
+      <mat-expansion-panel-header >
         <mat-panel-title>
-          {{ item?.Description }}
+          <div class="w-100">
+          <div class="row">
+            <div class="col-auto">
+              <mat-icon class="icont-style">restaurant</mat-icon>
+              {{ item?.Description }}
+            </div>
+            <div class="col"></div>
+            <div class="col-auto">
+              creator
+            </div>
+            <div class="col-auto">
+              you lent
+            </div>
+          </div>
+          </div>
+
+
+
         </mat-panel-title>
-        <mat-panel-description>
-          {{ item?.Date }}
-        </mat-panel-description>
       </mat-expansion-panel-header>
       <p>TotalAmount: {{ item?.TotalAmount }}</p>
     </mat-expansion-panel>

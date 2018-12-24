@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {
-  MatButtonModule,
+  MatBadgeModule,
+  MatButtonModule, MatButtonToggleModule,
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatMenuModule,
-  MatSidenavModule,
+  MatSidenavModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -33,7 +34,10 @@ import { RightSidenavComponent } from './components/right-sidenav/right-sidenav.
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatBadgeModule,
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   declarations: [
     NavbarComponent,

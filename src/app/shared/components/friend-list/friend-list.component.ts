@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../../store';
 import { Store } from '@ngrx/store';
 import { Friend } from '../../../store/friends/models/friend';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { LoadAllFriendsAction } from '../../../store/friends/actions/friends.actions';
 import { getAllFriendsDataState, getSelectedFriendState } from '../../../store/friends/selectors/friends.selectors';
 import { Router } from '@angular/router';

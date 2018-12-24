@@ -1,16 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { RegisterDialogComponent } from '../../../auth/register-dialog/register-dialog.component';
-import { AppState, getAuthState } from '../../../store';
+import { AppState } from '../../../store';
 import { Store } from '@ngrx/store';
-import { User } from '../../../store/auth/models/user';
-import { LoginUserAction, RegisterUserAction } from '../../../store/auth/actions/auth.actions';
+import { LoginUserAction } from '../../../store/auth/actions/auth.actions';
 import { Auth } from '../../../store/auth/models/auth';
-import { Observable } from 'rxjs/Observable';
-import { getAuthLoadingState, getAuthLogin, getAuthSuccessState } from '../../../store/auth/selectors/auth.selectors';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/filter';
+import { Observable, Subject } from 'rxjs';
+import { getAuthLoadingState, getAuthSuccessState } from '../../../store/auth/selectors/auth.selectors';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-dialog',
@@ -36,11 +33,10 @@ export class LoginDialogComponent implements OnInit, OnDestroy {
     this.createForm();
     this.loading$ = this.store.select(getAuthLoadingState);
     this.success$ = this.store.select(getAuthSuccessState);
-    this.success$.subscribe(res => console.log('suc', res));
     this.initDialogCloseHandler();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const form = this.form.value;
     const model = {
       UserName: form.UserName,
@@ -49,7 +45,7 @@ export class LoginDialogComponent implements OnInit, OnDestroy {
     this.store.dispatch(new LoginUserAction({ data: model }));
   }
 
-  createForm() {
+  createForm(): void {
     this.form = this.fb.group({
       UserName: null,
       Password: null
@@ -61,12 +57,12 @@ export class LoginDialogComponent implements OnInit, OnDestroy {
   }
 
   private initDialogCloseHandler(): void {
-    this.success$
-      .filter((success: boolean) => !!success)
-      .takeUntil(this.destroyed$)
-      .subscribe(() => {
-        this.dialogRef.close();
-      });
+    this.success$.pipe(
+      filter((success: boolean) => !!success),
+      takeUntil(this.destroyed$)
+    ).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
 }

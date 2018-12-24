@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Auth } from './models/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { SuccessAddResponse } from '../common/models/success-add-response';
-import 'rxjs/add/operator/map';
+
 import { User } from './models/user';
 import { LoginSuccessResponse } from './models/login-success-response';
 

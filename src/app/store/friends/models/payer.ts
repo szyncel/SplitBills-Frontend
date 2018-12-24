@@ -1,6 +1,6 @@
 import { Friend } from './friend';
 
 export interface Payer extends Friend {
-  Amoun?: number;
+  Amount?: number;
   Settled?: boolean;
 }

@@ -1,5 +1,5 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { TokenService } from '../../store/auth/token.service';
 import { MatSnackBar } from '@angular/material';
 import { AuthUtil } from '../utils/auth-util';

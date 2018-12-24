@@ -9,13 +9,17 @@
           </div>
         </div>
         <div class="col"></div>
-        <div class="col-auto" *ngIf="!(loggedIn$ | async)">
+        <div class="col-auto" *ngIf="tokenService.isLoggedIn()">
           <button mat-raised-button (click)="openLoginDialog()">Zaloguj</button>
           lub
           <button mat-raised-button (click)="openRegisterDialog()">Zarejestruj</button>
         </div>
-        <div class="col-auto" *ngIf="(loggedIn$ | async)">
+        <div class="col-auto" *ngIf="!tokenService.isLoggedIn()">
+          <!--<button mat-button matBadge="15" matBadgeColor="warn">-->
+            <!--<mat-icon>home</mat-icon> -->
+          <!--</button>-->
           <mat-menu #appMenu="matMenu">
+            <button mat-menu-item>Moje konto</button>
             <button mat-menu-item (click)="logout()">Wyloguj</button>
           </mat-menu>
 

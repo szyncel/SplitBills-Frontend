@@ -3,14 +3,25 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { ListComponent } from './list/list.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDividerModule,
+  MatIconModule,
+  MatListModule,
+  MatToolbarModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatDividerModule
   ],
   declarations: [DashboardComponent, ListComponent]
 })

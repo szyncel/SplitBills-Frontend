@@ -1,17 +1,19 @@
+
+import {map, catchError, switchMap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AppState } from '../index';
 import { Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { MatSnackBar } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/do';
+import { of } from 'rxjs';
+
+
+
+
+
+
+
 import { AuthUtil } from '../../shared/utils/auth-util';
 import { Router } from '@angular/router';
 import {
@@ -27,15 +29,15 @@ import { CommonExpenseResponse } from './models/common-expense-response';
 export class FriendsEffects {
 
   @Effect() loadAllFriends$ = this.actions$
-    .ofType(FriendsActionTypes.LOAD_ALL_FRIENDS)
-    .switchMap(() => this.service
-      .loadAllFriends()
-      .map((res) => new LoadAllFriendsSuccessAction(res)
-      )
-      .catch((error: HttpErrorResponse) => {
+    .ofType(FriendsActionTypes.LOAD_ALL_FRIENDS).pipe(
+    switchMap(() => this.service
+      .loadAllFriends().pipe(
+      map((res) => new LoadAllFriendsSuccessAction(res)
+      ),
+      catchError((error: HttpErrorResponse) => {
         return of(new LoadAllFriendsFailAction(error));
-      })
-    );
+      }),)
+    ));
 
   // @Effect({ dispatch: false }) signupSuccess$ = this.actions$
   //   .ofType(FriendsActionTypes.LOAD_ALL_FRIENDS_SUCCESS)
@@ -45,14 +47,14 @@ export class FriendsEffects {
   //   });
 
   @Effect() loadCommonExpenses$ = this.actions$
-    .ofType(FriendsActionTypes.LOAD_COMMON_EXPENSES)
-    .map((action: LoadCommonExpensesAction) => action.payload.id)
-    .switchMap((id) => this.service
-      .loadCommonExpenses(+id)
-      .map((res: CommonExpenseResponse) => new LoadCommonExpensesSuccessAction(res)
-      )
-      .catch((error: HttpErrorResponse) => of(new LoadCommonExpensesFailAction(error)))
-    );
+    .ofType(FriendsActionTypes.LOAD_COMMON_EXPENSES).pipe(
+    map((action: LoadCommonExpensesAction) => action.payload.id),
+    switchMap((id) => this.service
+      .loadCommonExpenses(+id).pipe(
+      map((res: CommonExpenseResponse) => new LoadCommonExpensesSuccessAction(res)
+      ),
+      catchError((error: HttpErrorResponse) => of(new LoadCommonExpensesFailAction(error))),)
+    ),);
 
   constructor(private store: Store<AppState>,
               private actions$: Actions,

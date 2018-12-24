@@ -15,6 +15,14 @@ import { AppStoreModule } from './store/app-store.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './shared/interceptors/token-interceptor';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+import { HubConnection } from '@aspnet/signalr';
+import { ActivityListComponent } from './activity/list/list.component';
+import { ListComponent } from './dashboard/list/list.component';
+import { HomeComponent } from './guest/home/home.component';
+
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [
@@ -41,7 +49,7 @@ import { TokenInterceptor } from './shared/interceptors/token-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

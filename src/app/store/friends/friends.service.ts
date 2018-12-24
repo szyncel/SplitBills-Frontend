@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Friend } from './models/friend';
 import { CommonExpenseResponse } from './models/common-expense-response';
 
@@ -13,7 +13,6 @@ export class FriendsService {
   }
 
   loadAllFriends(): Observable<Friend[]> {
-    console.log('here?');
     const url = 'http://localhost:50000/api/Account/Friends';
     return this.http.get<Friend[]>(url);
   }

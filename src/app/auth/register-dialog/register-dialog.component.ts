@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
@@ -17,9 +17,7 @@ import { AuthUtil } from '../../shared/utils/auth-util';
 export class RegisterDialogComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-
   loading$: Observable<any>;
-
   success$: Observable<boolean>;
 
   loggedIn;

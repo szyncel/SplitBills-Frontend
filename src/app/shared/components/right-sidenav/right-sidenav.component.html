@@ -1,3 +1,32 @@
-Right Sidenvas
-<h3>Total: {{ expensesSummary$ | async }}</h3>
+<div class="d-flex justify-content-start ml-3 mt-3 mb-3">
+  <mat-button-toggle-group aria-label="Font Style">
+    <mat-button-toggle value="bold">
+      <mat-icon>subject</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="italic">
+      <mat-icon>equalizer</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="underline">
+      <mat-icon>settings</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<div class="app-h3 ml-3 text-secondary">
+  Twoje saldo
+</div>
+
+<ng-container *ngIf="(selectedFriendData$ | async) as friend ">
+  <ng-container *ngIf="(expensesSummary$ | async) as expenseSummary">
+    <div class="d-flex flex-column ml-3" [ngClass]="setClass(expenseSummary)">
+      <div class="subheader" *ngIf="isNegative(expenseSummary)">Jesteś dłużny użytkownikowi: {{ friend?.Name }}</div>
+      <div class="subheader" *ngIf="!isNegative(expenseSummary)">{{ friend?.Name }} jest Tobie dłużny</div>
+      <div [ngClass]="setClass(expenseSummary)" style="font-size: 28px; line-height: 1.0em">
+        {{ formatValue(expenseSummary) }} zł
+      </div>
+    </div>
+  </ng-container>
+
+</ng-container>
+
 

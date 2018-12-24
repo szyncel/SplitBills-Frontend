@@ -1,24 +1,89 @@
 <mat-toolbar class="mb-3">
-  <div class="w-100">
-    <div class="row align-items-center">
-      <div class="col-auto">
-        Dashboard
-      </div>
-      <div class="col"></div>
-      <div class="col-auto">
-        <button mat-raised-button color="primary" type="button">
-          Dodaj rachunek
-        </button>
-      </div>
-      <div class="col-auto">
-        <button mat-raised-button color="primary" type="button">
-          Spłać
-        </button>
+  <mat-toolbar-row>
+    <div class="w-100">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          Dashboard
+        </div>
+        <div class="col"></div>
+        <div class="col-auto">
+          <button mat-raised-button color="primary" type="button">
+            Dodaj rachunek
+          </button>
+        </div>
+        <div class="col-auto">
+          <button mat-raised-button color="primary" type="button">
+            Spłać
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row style="border-top: 1px solid rgb(222, 222, 222); border-bottom: 1px solid rgb(222, 222, 222)">
+    <div class="w-100">
+      <div class="row justify-content-between">
+        <div class="col-auto">
+          <div class="d-flex flex-column">
+            <div class="subheader">Total balance</div>
+            <div class="text-danger" style="font-size: 14px; line-height: 1.0em">
+              {{(dashboardData$ | async)?.TotalBalance}} zł
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
+            <div class="subheader">you owe</div>
+            <div class="text-danger" style="font-size: 14px; line-height: 1.0em">
+              {{(dashboardData$ | async)?.OwedToUserSummary}} zł
+            </div>
+        </div>
+        <div class="col-auto">
+          <div class="d-flex flex-column">
+            <div class="subheader">you are owed</div>
+            <div class="text-danger" style="font-size: 14px; line-height: 1.0em">
+             {{(dashboardData$ | async)?.UserOwedSummary}} zł
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<p>
-  Dashboard work
-</p>
+<!--<mat-card class="mb-3">Simple card</mat-card>-->
+
+<div class="d-flex mx-3 justify-content-between">
+  <div class="app-h3">You owe</div>
+  <div class="app-h3">You are owed</div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let user of (dashboardData$ | async)?.UserOwedTo">
+        <mat-icon>account_box</mat-icon>
+        <div class="d-flex flex-column">
+          <div>{{user.Name}} {{user.SurName}}</div>
+          <div class="text-danger" style="font-size: 14px">you owe
+            <span class="font-weight-bold">
+             {{user.Amount}} zł
+          </span>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="col-6">
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let user of (dashboardData$ | async)?.UserBorrowers">
+        <mat-icon>account_box</mat-icon>
+        <div class="d-flex flex-column">
+          <div>{{user.Name}} {{user.SurName}}</div>
+          <div class="text-success" style="font-size: 14px">you owe
+            <span class="font-weight-bold">
+             {{user.Amount}} zł
+          </span>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
